@@ -230,8 +230,23 @@ function registerMasternodeGuideTaskFactory() {
             if (registrar === REGISTRARS.DMT) {
               prompts.length = 0
 
-            // Direct the user to DMT to do all steps there (except maybe
-            // broadcasting the actual protx) and then come back to dashmate
+              // Direct the user to DMT to do all steps there (except maybe
+              // broadcasting the actual protx) and then come back to dashmate
+              do {
+              dmtConfirmation = await task.prompt({
+                type: 'toggle',
+                name: 'dmtWait',
+                header: chalk`  Complete the initial DMT setup then return here to continue:
+    
+    See https://docs.dash.org/dmt-setup for instructions on using Dash Masternode Tool
+    to store your collateral and register your masternode. 
+    
+    Select "Yes" to continue the dashmate setup process.\n`,
+                message: 'Have you completed the DMT setup?',
+                enabled: 'Yes',
+                disabled: 'No',
+              });
+            } while (!dmtConfirmation);
 
               prompts.push(
               {
