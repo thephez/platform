@@ -253,11 +253,9 @@ function registerMasternodeGuideTaskFactory() {
                 // Don't care about operator reward % if DMT is doing the registration
                 type: 'form',
                 name: 'operator',
-                header: `  Dashmate needs to collect details on the operator key
-  to use in the registration transaction. The operator key is a BLS private key,
-  encoded in HEX format. Dashmate will record the private key in the masternode
-  configuration, and derive the public key for use in the masternode registration
-  transaction.\n`,
+                header: `  Dashmate needs to collect details on the operator key. The operator
+  key is a BLS private key, encoded in HEX format. Dashmate will record the
+  private key in the masternode configuration.\n`,
                 message: 'Enter masternode operator private key:',
                 choices: [
                   {
