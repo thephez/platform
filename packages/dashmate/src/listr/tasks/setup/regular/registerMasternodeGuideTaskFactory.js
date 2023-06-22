@@ -58,13 +58,20 @@ function registerMasternodeGuideTaskFactory() {
   directly. Instead, we will generate RPC commands that you can use in Dash Core
   or other external tools where keys are handled securely. During this process,
   dashmate can optionally generate configuration elements as necessary, such as
-  the BLS operator key and the node id.\n`,
+  the BLS operator key and the node id.
+  
+  1. Dash Masternode Tool (DMT) (https://github.com/Bertrand256/dash-masternode-tool/releases)
+     - Recommended for mainnet masternodes so the collateral can be stored on a hardware wallet
+       for maximum security
+  
+  2. Dash Core (https://github.com/dashpay/dash/releases)
+     - Recommended for testnet and devnet masternodes where more flexibility is required\n`,
               message: 'Which wallet will you use to store keys for your masternode?',
               choices: [
                 { name: REGISTRARS.CORE, message: 'Dash Core Wallet' },
-                { name: REGISTRARS.ANDROID, message: 'Android Dash Wallet' },
-                { name: REGISTRARS.IOS, message: 'iOS Dash Wallet' },
-                { name: REGISTRARS.DMT, message: 'DMT' },
+                { name: REGISTRARS.DMT, message: 'Dash Masternode Tool' },                
+                // { name: REGISTRARS.ANDROID, message: 'Android Dash Wallet' },
+                // { name: REGISTRARS.IOS, message: 'iOS Dash Wallet' },
               ],
               initial: REGISTRARS.CORE,
             },
