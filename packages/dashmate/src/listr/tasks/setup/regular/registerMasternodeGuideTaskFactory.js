@@ -121,6 +121,13 @@ function registerMasternodeGuideTaskFactory() {
 
           let confirmation;
           do {
+
+            // If using DMT, we should direct the user to DMT to do all steps
+            // there (except maybe broadcasting the actual protx) and then come
+            // back to dashmate. Once back in dashmate, they will simply need to
+            // do exactly the same flow as if they had said "Yes" when asked if
+            // their masternode was already registered.
+            
             const prompts = [
               {
                 type: 'form',
@@ -220,6 +227,36 @@ function registerMasternodeGuideTaskFactory() {
               },
             ];
 
+            if (registrar === REGISTRARS.DMT) {
+              prompts.length = 0
+
+            // Direct the user to DMT to do all steps there (except maybe
+            // broadcasting the actual protx) and then come back to dashmate
+
+              prompts.push(
+              {
+                // Don't care about operator reward % if DMT is doing the registration
+                type: 'form',
+                name: 'operator',
+                header: `  Dashmate needs to collect details on the operator key
+  to use in the registration transaction. The operator key is a BLS private key,
+  encoded in HEX format. Dashmate will record the private key in the masternode
+  configuration, and derive the public key for use in the masternode registration
+  transaction.\n`,
+                message: 'Enter masternode operator private key:',
+                choices: [
+                  {
+                    name: 'privateKey',
+                    message: 'BLS private key',
+                    initial: state.operator.privateKey || initialOperatorPrivateKey,
+                    validate: validateBLSPrivateKey,
+                  },
+                ],
+                validate: ({ privateKey }) => (
+                  validateBLSPrivateKey(privateKey) === true),
+              })
+            }
+
             if (ctx.isHP) {
               prompts.push(createPlatformNodeKeyInput({
                 initial: state.platformNodeKey,
@@ -247,7 +284,7 @@ function registerMasternodeGuideTaskFactory() {
               || systemConfigs[ctx.preset].platform.dapi.envoy.http.port;
 
             let command;
-            if (ctx.isHP) {
+            if (ctx.isHP && registrar !== REGISTRARS.DMT) {
               command = `dash-cli protx register_hpmn \\
   ${state.collateral.txId} \\
   ${state.collateral.outputIndex} \\
@@ -260,7 +297,7 @@ function registerMasternodeGuideTaskFactory() {
   ${deriveTenderdashNodeId(state.platformNodeKey)} \\
   ${platformP2PPort} \\
   ${platformHTTPPort}`;
-            } else {
+            } else if (registrar !== REGISTRARS.DMT) {
               command = `dash-cli protx register \\
   ${state.collateral.txId} \\
   ${state.collateral.outputIndex} \\
@@ -272,6 +309,7 @@ function registerMasternodeGuideTaskFactory() {
   ${state.keys.payoutAddress}`;
             }
 
+            if (registrar !== REGISTRARS.DMT) {
             // Wrap the command to fit the terminal width (listr uses new lines to wrap the text)
             if (!ctx.isVerbose) {
               command = command.replace(/\\/g, '');
@@ -293,6 +331,10 @@ function registerMasternodeGuideTaskFactory() {
               enabled: 'Yes',
               disabled: 'No',
             });
+          } else if (registrar === REGISTRARS.DMT) {
+            confirmation = 'Yes';
+          }
+          
           } while (!confirmation);
 
           ctx.config.set('core.masternode.operator.privateKey', state.operator.privateKey);
