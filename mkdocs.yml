@@ -1,5 +1,6 @@
 site_name: Dash Platform
 plugins:
+    - search:
     - redirects:
         redirect_maps:
             'SDK/README.md': 'https://dashplatform.readme.io/docs/dash-sdk-overview'
