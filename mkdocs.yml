@@ -4,3 +4,5 @@ plugins:
     - redirects:
         redirect_maps:
             'SDK/README.md': 'https://dashplatform.readme.io/docs/dash-sdk-overview'
+            'SDK/Overview.md': 'https://dashplatform.readme.io/docs/dash-sdk-overview'
+            'SDK/examples/fetch-an-identity-from-its-name.md': 'https://dashplatform.readme.io/docs/dash-sdk-examples-fetch-an-identity-from-its-name'
