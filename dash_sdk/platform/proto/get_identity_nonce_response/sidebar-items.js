@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Version"],"mod":["get_identity_nonce_response_v0"],"struct":["GetIdentityNonceResponseV0"]};

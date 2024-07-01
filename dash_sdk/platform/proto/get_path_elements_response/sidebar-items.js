@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Version"],"mod":["get_path_elements_response_v0"],"struct":["GetPathElementsResponseV0"]};

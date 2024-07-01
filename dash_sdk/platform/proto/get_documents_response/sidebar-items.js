@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Version"],"mod":["get_documents_response_v0"],"struct":["GetDocumentsResponseV0"]};

@@ -1,0 +1,4 @@
+var srcIndex = new Map(JSON.parse('[\
+["dash_sdk",["",[["core",[],["mod.rs","transaction.rs"]],["internal_cache",[],["mod.rs"]],["mock",[],["provider.rs","requests.rs","sdk.rs"]],["platform",[["transition",[],["broadcast.rs","broadcast_identity.rs","broadcast_request.rs","context.rs","purchase_document.rs","put_contract.rs","put_document.rs","put_identity.rs","put_settings.rs","top_up_identity.rs","transfer_document.rs","txid.rs","update_price_of_document.rs","withdraw_from_identity.rs"]],["types",[],["epoch.rs","identity.rs","version_votes.rs"]]],["block_info_from_metadata.rs","delegate.rs","document_query.rs","fetch.rs","fetch_many.rs","identities_contract_keys_query.rs","query.rs","transition.rs","types.rs"]]],["core_client.rs","error.rs","lib.rs","mock.rs","platform.rs","sdk.rs"]]]\
+]'));
+createSrcSidebar();

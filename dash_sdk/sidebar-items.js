@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["VERSION"],"macro":["delegate_enum","delegate_from_proof_variant","delegate_transport_request_variant"],"mod":["core","error","mock","platform","sdk"],"struct":["RequestSettings"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Version"],"struct":["ConsensusParamsBlock","ConsensusParamsEvidence","GetConsensusParamsResponseV0"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["TransitionContext"],"mod":["broadcast","broadcast_request","purchase_document","put_contract","put_document","put_identity","put_settings","top_up_identity","transfer_document","update_price_of_document","withdraw_from_identity"],"struct":["TxId"]};

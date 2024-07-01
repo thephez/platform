@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["block_info_from_metadata"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["DEFAULT_CONTRACT_CACHE_SIZE","DEFAULT_IDENTITY_NONCE_STALE_TIME_S","DEFAULT_QUORUM_PUBLIC_KEYS_CACHE_SIZE"],"struct":["AddressList","RequestSettings","Sdk","SdkBuilder","Uri"],"type":["LastQueryTimestamp","StalenessInSeconds"]};

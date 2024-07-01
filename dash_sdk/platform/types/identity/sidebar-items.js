@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["IdentityRequest","IdentityResponse"],"struct":["PublicKeyHash"]};
