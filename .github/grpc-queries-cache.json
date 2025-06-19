@@ -116,7 +116,7 @@
       "status": "implemented"
     },
     "getTokenContractInfo": {
-      "status": "not_implemented"
+      "status": "implemented"
     },
     "getTokenPreProgrammedDistributions": {
       "status": "not_implemented"
@@ -143,5 +143,5 @@
       "status": "not_implemented"
     }
   },
-  "last_updated": "2025-01-06T00:00:00Z"
+  "last_updated": "2025-06-19T13:16:30.092257"
 }
