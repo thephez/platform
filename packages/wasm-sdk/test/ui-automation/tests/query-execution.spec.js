@@ -529,6 +529,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       console.log('✅ getCurrentQuorumsInfo single view without proof confirmed');
     });
 
+    test('should execute getCurrentQuorumsInfo query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'system', 
+        'getCurrentQuorumsInfo',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicQueryResult(result);
+      
+      // Validate quorums info result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ getCurrentQuorumsInfo split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for getCurrentQuorumsInfo query');
+      }
+    });
+
     test('should execute getPrefundedSpecializedBalance query', async () => {
       await wasmSdkPage.setupQuery('system', 'getPrefundedSpecializedBalance');
       
@@ -550,6 +574,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       expect(balanceData).toHaveProperty('balance');
       
       console.log('✅ getPrefundedSpecializedBalance single view without proof confirmed');
+    });
+
+    test('should execute getPrefundedSpecializedBalance query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'system', 
+        'getPrefundedSpecializedBalance',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicQueryResult(result);
+      
+      // Validate specialized balance result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ getPrefundedSpecializedBalance split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for getPrefundedSpecializedBalance query');
+      }
     });
   });
 
@@ -645,6 +693,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       console.log('✅ getProtocolVersionUpgradeState single view without proof confirmed');
     });
 
+    test('should execute getProtocolVersionUpgradeState query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'protocol', 
+        'getProtocolVersionUpgradeState',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicQueryResult(result);
+      
+      // Validate protocol version upgrade state result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ getProtocolVersionUpgradeState split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for getProtocolVersionUpgradeState query');
+      }
+    });
+
     test('should execute getProtocolVersionUpgradeVoteStatus query', async () => {
       await wasmSdkPage.setupQuery('protocol', 'getProtocolVersionUpgradeVoteStatus');
       
@@ -665,6 +737,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       expect(typeof voteData === 'object').toBe(true);
       
       console.log('✅ getProtocolVersionUpgradeVoteStatus single view without proof confirmed');
+    });
+
+    test('should execute getProtocolVersionUpgradeVoteStatus query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'protocol', 
+        'getProtocolVersionUpgradeVoteStatus',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicQueryResult(result);
+      
+      // Validate protocol version upgrade vote status result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ getProtocolVersionUpgradeVoteStatus split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for getProtocolVersionUpgradeVoteStatus query');
+      }
     });
   });
 
@@ -693,6 +789,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       console.log('✅ getDpnsUsername single view without proof confirmed');
     });
 
+    test('should execute getDpnsUsername query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'dpns', 
+        'getDpnsUsername',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicDpnsQueryResult(result);
+      
+      // Validate DPNS username result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ getDpnsUsername split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for getDpnsUsername query');
+      }
+    });
+
     test('should execute dpnsCheckAvailability query', async () => {
       await wasmSdkPage.setupQuery('dpns', 'dpnsCheckAvailability');
       
@@ -715,6 +835,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       console.log('✅ dpnsCheckAvailability single view without proof confirmed');
     });
 
+    test('should execute dpnsCheckAvailability query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'dpns', 
+        'dpnsCheckAvailability',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicDpnsQueryResult(result);
+      
+      // Validate DPNS availability result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ dpnsCheckAvailability split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for dpnsCheckAvailability query');
+      }
+    });
+
     test('should execute dpnsResolve query', async () => {
       await wasmSdkPage.setupQuery('dpns', 'dpnsResolve');
       
@@ -735,6 +879,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       // Valid responses include identity ID, null, or "not found" message
       
       console.log('✅ dpnsResolve single view without proof confirmed');
+    });
+
+    test('should execute dpnsResolve query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'dpns', 
+        'dpnsResolve',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicDpnsQueryResult(result);
+      
+      // Validate DPNS resolve result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ dpnsResolve split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for dpnsResolve query');
+      }
     });
 
     test('should execute dpnsSearch query', async () => {
@@ -763,6 +931,30 @@ test.describe('WASM SDK Query Execution Tests', () => {
       }
       
       console.log('✅ dpnsSearch single view without proof confirmed');
+    });
+
+    test('should execute dpnsSearch query with proof info', async () => {
+      const { result, proofEnabled } = await executeQueryWithProof(
+        wasmSdkPage, 
+        parameterInjector, 
+        'dpns', 
+        'dpnsSearch',
+        'testnet'
+      );
+      
+      // Validate basic result
+      validateBasicDpnsQueryResult(result);
+      
+      // Validate DPNS search result
+      expect(result.result).toBeDefined();
+      
+      // If proof was enabled, verify split view
+      if (proofEnabled) {
+        validateSplitView(result);
+        console.log('✅ dpnsSearch split view with proof confirmed');
+      } else {
+        console.log('⚠️ Proof was not enabled for dpnsSearch query');
+      }
     });
   });
 
