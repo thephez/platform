@@ -211,7 +211,7 @@ describe('DPNS (Dash Platform Name Service)', () => {
                     expect(result).to.be.an('array');
                 } catch (error) {
                     // Network errors are expected in test environment
-                    expect(error.message).to.match(/network|connection|identity/i);
+                    expect(error.message).to.match(/network|connection/i);
                 }
             });
 
@@ -226,7 +226,7 @@ describe('DPNS (Dash Platform Name Service)', () => {
                     expect(result).to.satisfy(r => r === null || typeof r === 'object');
                 } catch (error) {
                     // Network errors are expected
-                    expect(error.message).to.match(/network|connection|identity/i);
+                    expect(error.message).to.match(/network|connection/i);
                 }
             });
         });
