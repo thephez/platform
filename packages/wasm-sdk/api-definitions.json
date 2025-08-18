@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
-  "generated_at": "2025-08-13T17:10:00.000000",
+  "version": "1.1.0",
+  "generated_at": "2025-08-14T19:40:28.211Z",
   "source": "index.html",
   "queries": {
     "identity": {
@@ -16,7 +16,9 @@
               "label": "Identity ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "identity_fetch",
+          "functionNameWithProof": "identity_fetch_with_proof_info"
         },
         "getIdentityKeys": {
           "label": "Get Identity Keys",
@@ -74,7 +76,9 @@
               "label": "Offset",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_identity_keys",
+          "functionNameWithProof": "get_identity_keys_with_proof_info"
         },
         "getIdentitiesContractKeys": {
           "label": "Get Identities Contract Keys",
@@ -109,7 +113,7 @@
                   "label": "Authentication"
                 },
                 {
-                  "value": "1", 
+                  "value": "1",
                   "label": "Encryption"
                 },
                 {
@@ -126,7 +130,9 @@
                 }
               ]
             }
-          ]
+          ],
+          "functionName": "get_identities_contract_keys",
+          "functionNameWithProof": "get_identities_contract_keys_with_proof_info"
         },
         "getIdentityNonce": {
           "label": "Get Identity Nonce",
@@ -138,7 +144,9 @@
               "label": "Identity ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identity_nonce",
+          "functionNameWithProof": "get_identity_nonce_with_proof_info"
         },
         "getIdentityContractNonce": {
           "label": "Get Identity Contract Nonce",
@@ -156,7 +164,9 @@
               "label": "Contract ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identity_contract_nonce",
+          "functionNameWithProof": "get_identity_contract_nonce_with_proof_info"
         },
         "getIdentityBalance": {
           "label": "Get Identity Balance",
@@ -168,7 +178,9 @@
               "label": "Identity ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identity_balance",
+          "functionNameWithProof": "get_identity_balance_with_proof_info"
         },
         "getIdentitiesBalances": {
           "label": "Get Identities Balances",
@@ -180,7 +192,9 @@
               "label": "Identity IDs",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identities_balances",
+          "functionNameWithProof": "get_identities_balances_with_proof_info"
         },
         "getIdentityBalanceAndRevision": {
           "label": "Get Identity Balance and Revision",
@@ -192,7 +206,9 @@
               "label": "Identity ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identity_balance_and_revision",
+          "functionNameWithProof": "get_identity_balance_and_revision_with_proof_info"
         },
         "getIdentityByPublicKeyHash": {
           "label": "Get Identity by Unique Public Key Hash",
@@ -205,7 +221,9 @@
               "required": true,
               "placeholder": "b7e904ce25ed97594e72f7af0e66f298031c1754"
             }
-          ]
+          ],
+          "functionName": "get_identity_by_public_key_hash",
+          "functionNameWithProof": "get_identity_by_public_key_hash_with_proof_info"
         },
         "getIdentityByNonUniquePublicKeyHash": {
           "label": "Get Identity by Non-Unique Public Key Hash",
@@ -224,7 +242,9 @@
               "label": "Start After",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_identity_by_non_unique_public_key_hash",
+          "functionNameWithProof": "get_identity_by_non_unique_public_key_hash_with_proof_info"
         },
         "getIdentityTokenBalances": {
           "label": "Get Identity Token Balances",
@@ -242,11 +262,15 @@
               "label": "Token IDs",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_identity_token_balances",
+          "functionNameWithProof": "get_identity_token_balances_with_proof_info"
         },
         "getIdentitiesTokenBalances": {
           "label": "Get Identities Token Balances",
           "description": "Get token balance for multiple identities",
+          "functionName": "get_identities_token_balances",
+          "functionNameWithProof": "get_identities_token_balances_with_proof_info",
           "inputs": [
             {
               "name": "identityIds",
@@ -292,7 +316,9 @@
               "label": "Offset",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_identity_token_infos",
+          "functionNameWithProof": "get_identity_token_infos_with_proof_info"
         },
         "getIdentitiesTokenInfos": {
           "label": "Get Identities Token Info",
@@ -311,7 +337,9 @@
               "required": true,
               "placeholder": "Hqyu8WcRwXCTwbNxdga4CN5gsVEGc67wng4TFzceyLUv"
             }
-          ]
+          ],
+          "functionName": "get_identities_token_infos",
+          "functionNameWithProof": "get_identities_token_infos_with_proof_info"
         }
       }
     },
@@ -329,7 +357,9 @@
               "required": true,
               "placeholder": "GWRSAVFMjXx8HpQFaNJMqBV7MBgMK4br5UESsB4S31Ec"
             }
-          ]
+          ],
+          "functionName": "data_contract_fetch",
+          "functionNameWithProof": "data_contract_fetch_with_proof_info"
         },
         "getDataContractHistory": {
           "label": "Get Data Contract History",
@@ -360,7 +390,9 @@
               "label": "Start At Timestamp (ms)",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_data_contract_history",
+          "functionNameWithProof": "get_data_contract_history_with_proof_info"
         },
         "getDataContracts": {
           "label": "Get Data Contracts",
@@ -373,7 +405,9 @@
               "required": true,
               "placeholder": "[\"GWRSAVFMjXx8HpQFaNJMqBV7MBgMK4br5UESsB4S31Ec\", \"ALybvzfcCwMs7sinDwmtumw17NneuW7RgFtFHgjKmF3A\"]"
             }
-          ]
+          ],
+          "functionName": "get_data_contracts",
+          "functionNameWithProof": "get_data_contracts_with_proof_info"
         }
       }
     },
@@ -418,7 +452,9 @@
               "label": "Limit",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_documents",
+          "functionNameWithProof": "get_documents_with_proof_info"
         },
         "getDocument": {
           "label": "Get Document",
@@ -445,7 +481,9 @@
               "required": true,
               "placeholder": "7NYmEKQsYtniQRUmxwdPGeVcirMoPh5ZPyAKz8BWFy3r"
             }
-          ]
+          ],
+          "functionName": "get_document",
+          "functionNameWithProof": "get_document_with_proof_info"
         }
       }
     },
@@ -462,7 +500,9 @@
               "label": "Identity ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_dpns_usernames",
+          "functionNameWithProof": "get_dpns_usernames_with_proof_info"
         },
         "dpnsCheckAvailability": {
           "label": "DPNS Check Availability",
@@ -474,7 +514,9 @@
               "label": "Label (Username)",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_dpns_username_by_name",
+          "functionNameWithProof": "get_dpns_username_by_name_with_proof_info"
         },
         "dpnsResolve": {
           "label": "DPNS Resolve Name",
@@ -486,7 +528,8 @@
               "label": "Name",
               "required": true
             }
-          ]
+          ],
+          "functionName": "dpns_resolve_name"
         },
         "dpnsSearch": {
           "label": "DPNS Search Name",
@@ -506,7 +549,9 @@
               "required": false,
               "placeholder": "Default: 10"
             }
-          ]
+          ],
+          "functionName": "get_documents",
+          "functionNameWithProof": "get_documents_with_proof_info"
         }
       }
     },
@@ -571,7 +616,9 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_contested_resources",
+          "functionNameWithProof": "get_contested_resources_with_proof_info"
         },
         "getContestedResourceVoteState": {
           "label": "Get Contested Resource Vote State",
@@ -632,7 +679,9 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_contested_resource_vote_state",
+          "functionNameWithProof": "get_contested_resource_vote_state_with_proof_info"
         },
         "getContestedResourceVotersForIdentity": {
           "label": "Get Contested Resource Voters for Identity",
@@ -688,7 +737,9 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_contested_resource_voters_for_identity",
+          "functionNameWithProof": "get_contested_resource_voters_for_identity_with_proof_info"
         },
         "getContestedResourceIdentityVotes": {
           "label": "Get Contested Resource Identity Votes",
@@ -718,7 +769,9 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_contested_resource_identity_votes",
+          "functionNameWithProof": "get_contested_resource_identity_votes_with_proof_info"
         },
         "getVotePollsByEndDate": {
           "label": "Get Vote Polls by End Date",
@@ -756,7 +809,9 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_vote_polls_by_end_date",
+          "functionNameWithProof": "get_vote_polls_by_end_date_with_proof_info"
         }
       }
     },
@@ -766,7 +821,9 @@
         "getProtocolVersionUpgradeState": {
           "label": "Get Protocol Version Upgrade State",
           "description": "Get the current state of protocol version upgrades",
-          "inputs": []
+          "inputs": [],
+          "functionName": "get_protocol_version_upgrade_state",
+          "functionNameWithProof": "get_protocol_version_upgrade_state_with_proof_info"
         },
         "getProtocolVersionUpgradeVoteStatus": {
           "label": "Get Protocol Version Upgrade Vote Status",
@@ -785,7 +842,8 @@
               "label": "Count",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_protocol_version_upgrade_vote_status"
         }
       }
     },
@@ -814,12 +872,16 @@
               "label": "Ascending Order",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_epochs_info",
+          "functionNameWithProof": "get_epochs_info_with_proof_info"
         },
         "getCurrentEpoch": {
           "label": "Get Current Epoch",
           "description": "Get information about the current epoch",
-          "inputs": []
+          "inputs": [],
+          "functionName": "get_current_epoch",
+          "functionNameWithProof": "get_current_epoch_with_proof_info"
         },
         "getFinalizedEpochInfos": {
           "label": "Get Finalized Epoch Info",
@@ -843,7 +905,9 @@
               "label": "Ascending Order",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_finalized_epoch_infos",
+          "functionNameWithProof": "get_finalized_epoch_infos_with_proof_info"
         },
         "getEvonodesProposedEpochBlocksByIds": {
           "label": "Get Evonodes Proposed Epoch Blocks by IDs",
@@ -862,7 +926,8 @@
               "required": true,
               "placeholder": "[\"143dcd6a6b7684fde01e88a10e5d65de9a29244c5ecd586d14a342657025f113\"]"
             }
-          ]
+          ],
+          "functionName": "get_evonodes_proposed_epoch_blocks_by_ids"
         },
         "getEvonodesProposedEpochBlocksByRange": {
           "label": "Get Evonodes Proposed Epoch Blocks by Range",
@@ -885,7 +950,7 @@
               "type": "text",
               "label": "Start After (Evonode ID)",
               "required": false,
-              "placeholder": "143dcd6a6b7684fde01e88a10e5d65de9a29244c5ecd586d14a342657025f113"              
+              "placeholder": "143dcd6a6b7684fde01e88a10e5d65de9a29244c5ecd586d14a342657025f113"
             },
             {
               "name": "orderAscending",
@@ -893,7 +958,8 @@
               "label": "Order Ascending",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_evonodes_proposed_epoch_blocks_by_range"
         }
       }
     },
@@ -910,7 +976,9 @@
               "label": "Token IDs",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_token_statuses",
+          "functionNameWithProof": "get_token_statuses_with_proof_info"
         },
         "getTokenDirectPurchasePrices": {
           "label": "Get Token Direct Purchase Prices",
@@ -922,7 +990,9 @@
               "label": "Token IDs",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_token_direct_purchase_prices",
+          "functionNameWithProof": "get_token_direct_purchase_prices_with_proof_info"
         },
         "getTokenContractInfo": {
           "label": "Get Token Contract Info",
@@ -935,7 +1005,9 @@
               "required": true,
               "placeholder": "EETVvWgohFDKtbB3ejEzBcDRMNYkc9TtgXY6y8hzP3Ta"
             }
-          ]
+          ],
+          "functionName": "get_token_contract_info",
+          "functionNameWithProof": "get_token_contract_info_with_proof_info"
         },
         "getTokenPerpetualDistributionLastClaim": {
           "label": "Get Token Perpetual Distribution Last Claim",
@@ -953,7 +1025,9 @@
               "label": "Token ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_token_perpetual_distribution_last_claim",
+          "functionNameWithProof": "get_token_perpetual_distribution_last_claim_with_proof_info"
         },
         "getTokenTotalSupply": {
           "label": "Get Token Total Supply",
@@ -966,7 +1040,9 @@
               "required": true,
               "placeholder": "Hqyu8WcRwXCTwbNxdga4CN5gsVEGc67wng4TFzceyLUv"
             }
-          ]
+          ],
+          "functionName": "get_token_total_supply",
+          "functionNameWithProof": "get_token_total_supply_with_proof_info"
         }
       }
     },
@@ -989,7 +1065,9 @@
               "label": "Group Contract Position",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_group_info",
+          "functionNameWithProof": "get_group_info_with_proof_info"
         },
         "getGroupInfos": {
           "label": "Get Group Infos",
@@ -1019,7 +1097,9 @@
               "label": "Count",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_group_infos",
+          "functionNameWithProof": "get_group_infos_with_proof_info"
         },
         "getGroupActions": {
           "label": "Get Group Actions",
@@ -1071,7 +1151,9 @@
               "label": "Count",
               "required": false
             }
-          ]
+          ],
+          "functionName": "get_group_actions",
+          "functionNameWithProof": "get_group_actions_with_proof_info"
         },
         "getGroupActionSigners": {
           "label": "Get Group Action Signers",
@@ -1111,7 +1193,9 @@
               "label": "Action ID",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_group_action_signers",
+          "functionNameWithProof": "get_group_action_signers_with_proof_info"
         }
       }
     },
@@ -1121,12 +1205,14 @@
         "getStatus": {
           "label": "Get Status",
           "description": "Get system status",
-          "inputs": []
+          "inputs": [],
+          "functionName": "get_status"
         },
         "getCurrentQuorumsInfo": {
           "label": "Get Current Quorums Info",
           "description": "Get information about current quorums",
-          "inputs": []
+          "inputs": [],
+          "functionName": "get_current_quorums_info"
         },
         "getPrefundedSpecializedBalance": {
           "label": "Get Prefunded Specialized Balance",
@@ -1139,12 +1225,16 @@
               "required": true,
               "placeholder": "AzaU7zqCT7X1kxh8yWxkT9PxAgNqWDu4Gz13emwcRyAT"
             }
-          ]
+          ],
+          "functionName": "get_prefunded_specialized_balance",
+          "functionNameWithProof": "get_prefunded_specialized_balance_with_proof_info"
         },
         "getTotalCreditsInPlatform": {
           "label": "Get Total Credits in Platform",
           "description": "Get total credits in the platform",
-          "inputs": []
+          "inputs": [],
+          "functionName": "get_total_credits_in_platform",
+          "functionNameWithProof": "get_total_credits_in_platform_with_proof_info"
         },
         "getPathElements": {
           "label": "Get Path Elements",
@@ -1162,7 +1252,9 @@
               "label": "Keys",
               "required": true
             }
-          ]
+          ],
+          "functionName": "get_path_elements",
+          "functionNameWithProof": "get_path_elements_with_proof_info"
         },
         "waitForStateTransitionResult": {
           "label": "Wait for State Transition Result",
@@ -1174,7 +1266,8 @@
               "label": "State Transition Hash",
               "required": true
             }
-          ]
+          ],
+          "functionName": "wait_for_state_transition_result"
         }
       }
     }
