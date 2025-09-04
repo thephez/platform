@@ -212,11 +212,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create mint transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -296,11 +295,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create burn transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -388,11 +386,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create transfer transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -481,11 +478,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create freeze transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -575,11 +571,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create unfreeze transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -675,11 +670,10 @@ impl WasmSdk {
             ))
         })?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -817,11 +811,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create set price transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result based on the proof result type
         match proof_result {
@@ -1017,11 +1010,10 @@ impl WasmSdk {
             ))
         })?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -1119,11 +1111,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create claim transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)
@@ -1347,11 +1338,10 @@ impl WasmSdk {
             JsValue::from_str(&format!("Failed to create config update transition: {}", e))
         })?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Format and return result
         self.format_token_result(proof_result)

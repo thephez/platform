@@ -670,10 +670,9 @@ impl WasmSdk {
 
         // Broadcast the transition
         use dash_sdk::dpp::state_transition::proof_result::StateTransitionProofResult;
-        let _result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transfer: {}", e)))?;
+        let _result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Create JavaScript result object
         let result_obj = js_sys::Object::new();
@@ -1123,10 +1122,9 @@ impl WasmSdk {
 
         // Broadcast the transition
         use dash_sdk::dpp::state_transition::proof_result::StateTransitionProofResult;
-        let result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast update: {}", e)))?;
+        let result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Extract updated identity from result
         let updated_revision = match result {
