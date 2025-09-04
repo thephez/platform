@@ -313,11 +313,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create document transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Log the result for debugging
         web_sys::console::log_1(&JsValue::from_str(
@@ -646,11 +645,10 @@ impl WasmSdk {
             ))
         })?;
 
-        // Broadcast the transition
-        let proof_result = state_transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&state_transition)
+            .await?;
 
         // Convert result to JsValue based on the type
         match proof_result {
@@ -1224,11 +1222,10 @@ impl WasmSdk {
         )
         .map_err(|e| JsValue::from_str(&format!("Failed to create purchase transition: {}", e)))?;
 
-        // Broadcast the transition
-        let proof_result = transition
-            .broadcast_and_wait::<StateTransitionProofResult>(&sdk, None)
-            .await
-            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast purchase: {}", e)))?;
+        // Broadcast the transition with delay to avoid race condition
+        let proof_result = self
+            .broadcast_with_delay::<StateTransitionProofResult, _>(&transition)
+            .await?;
 
         // Handle the proof result
         match proof_result {
