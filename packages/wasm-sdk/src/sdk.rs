@@ -23,7 +23,7 @@ use std::ops::{Deref, DerefMut};
 use std::str::FromStr;
 use std::time::Duration;
 use wasm_bindgen::prelude::wasm_bindgen;
-use wasm_bindgen::{JsError, JsValue};
+use wasm_bindgen::{JsError, JsValue, JsCast};
 use web_sys::{console, js_sys};
 
 #[wasm_bindgen]
@@ -120,6 +120,52 @@ impl WasmSdk {
     /// Clone the inner Sdk (not exposed to WASM)
     pub(crate) fn inner_clone(&self) -> Sdk {
         self.0.clone()
+    }
+
+    /// Broadcast state transition with a delay before waiting for response
+    /// This helps avoid the race condition in DAPI's waitForStateTransitionResult
+    pub(crate) async fn broadcast_with_delay<T, S>(
+        &self,
+        state_transition: &S,
+    ) -> Result<T, JsValue>
+    where
+        T: TryFrom<dash_sdk::dpp::state_transition::proof_result::StateTransitionProofResult>,
+        S: BroadcastStateTransition,
+    {
+        let sdk = &self.0;
+        
+        // Step 1: Broadcast the state transition
+        state_transition
+            .broadcast(sdk, None)
+            .await
+            .map_err(|e| JsValue::from_str(&format!("Failed to broadcast transition: {}", e)))?;
+        
+        // Step 2: Add delay to allow transaction to propagate
+        // Use WASM-compatible timer
+        let promise = js_sys::Promise::new(&mut |resolve, _reject| {
+            let closure = wasm_bindgen::closure::Closure::wrap(Box::new(move || {
+                resolve.call0(&JsValue::UNDEFINED).unwrap();
+            }) as Box<dyn FnMut()>);
+            
+            web_sys::window()
+                .unwrap()
+                .set_timeout_with_callback_and_timeout_and_arguments_0(
+                    closure.as_ref().unchecked_ref(),
+                    2000, // 2 seconds
+                )
+                .unwrap();
+            closure.forget();
+        });
+        
+        wasm_bindgen_futures::JsFuture::from(promise)
+            .await
+            .unwrap();
+        
+        // Step 3: Wait for the state transition result
+        state_transition
+            .wait_for_response::<T>(sdk, None)
+            .await
+            .map_err(|e| JsValue::from_str(&format!("Failed to wait for transition result: {}", e)))
     }
 }
 
