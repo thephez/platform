@@ -3,17 +3,12 @@
   "version": "1.0.0",
   "description": "Tests for WASM SDK",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:verbose": "jest --verbose"
+    "test": "mocha",
+    "test:watch": "mocha --watch",
+    "test:verbose": "mocha --reporter spec"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/*.test.js"
-    ]
+    "mocha": "11.7.2",
+    "chai": "4.5.0"
   }
 }

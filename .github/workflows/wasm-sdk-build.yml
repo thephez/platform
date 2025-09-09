@@ -214,6 +214,12 @@ jobs:
           echo "Running WASM SDK comprehensive test suite..."
           set -o pipefail && node test/run-all-tests.mjs | tee test-output.log
 
+      - name: Run Mocha unit tests
+        working-directory: packages/wasm-sdk/test
+        run: |
+          echo "Running Mocha unit tests..."
+          set -o pipefail && npm test | tee ../mocha-test-output.log
+
       - name: Generate job summary
         if: always()
         working-directory: packages/wasm-sdk
@@ -221,25 +227,37 @@ jobs:
           echo "## 🧪 WASM SDK Test Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          # Extract test results from the test output
+          # Extract comprehensive test results
           if [ -f test-output.log ]; then
-            # Extract overall summary
             total_tests=$(grep -o "Total Tests: [0-9]*" test-output.log | grep -o "[0-9]*" || echo "0")
             total_passed=$(grep -o "Passed: [0-9]*" test-output.log | grep -o "[0-9]*" || echo "0")
             total_failed=$(grep -o "Failed: [0-9]*" test-output.log | grep -o "[0-9]*" || echo "0")
             total_time=$(grep -o "Time: [0-9]*\.[0-9]*s" test-output.log | grep -o "[0-9]*\.[0-9]*" || echo "0.00")
 
-            # Display overall summary
+            echo "### Comprehensive Test Suite (.mjs tests)" >> $GITHUB_STEP_SUMMARY
             echo "**$total_tests** tests • **$total_passed** passed • **$total_failed** failed • **${total_time}s**" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
+          fi
 
-            if [ "$total_failed" != "0" ]; then
-              echo "❌ **Some tests failed** - Check the detailed test report for specifics" >> $GITHUB_STEP_SUMMARY
-            else
-              echo "✅ **All tests passed**" >> $GITHUB_STEP_SUMMARY
-            fi
+          # Extract Mocha test results
+          if [ -f mocha-test-output.log ]; then
+            mocha_passed=$(grep -o "[0-9]* passing" mocha-test-output.log | grep -o "[0-9]*" || echo "0")
+            mocha_failed=$(grep -o "[0-9]* failing" mocha-test-output.log | grep -o "[0-9]*" || echo "0")
+            mocha_total=$((mocha_passed + mocha_failed))
+
+            echo "### Mocha Unit Tests (.spec.js tests)" >> $GITHUB_STEP_SUMMARY
+            echo "**$mocha_total** tests • **$mocha_passed** passed • **$mocha_failed** failed" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Overall status
+          comprehensive_failed=$([ -f test-output.log ] && grep -o "Failed: [0-9]*" test-output.log | grep -o "[0-9]*" || echo "0")
+          mocha_failed=$([ -f mocha-test-output.log ] && grep -o "[0-9]* failing" mocha-test-output.log | grep -o "[0-9]*" || echo "0")
+          
+          if [ "$comprehensive_failed" != "0" ] || [ "$mocha_failed" != "0" ]; then
+            echo "❌ **Some tests failed** - Check the detailed output above" >> $GITHUB_STEP_SUMMARY
           else
-            echo "⚠️ No test output captured" >> $GITHUB_STEP_SUMMARY
+            echo "✅ **All tests passed**" >> $GITHUB_STEP_SUMMARY
           fi
 
           echo "" >> $GITHUB_STEP_SUMMARY

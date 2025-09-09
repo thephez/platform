@@ -1,0 +1,4 @@
+{
+  "spec": "unit/**/*.spec.js",
+  "reporter": "spec"
+}
