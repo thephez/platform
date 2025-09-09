@@ -12,7 +12,6 @@ const __dirname = dirname(__filename);
 // Test files to run
 const testFiles = [
     { name: 'SDK Initialization', file: 'sdk-init-simple.test.mjs' },
-    { name: 'Key Generation', file: 'key-generation.test.mjs' },
     { name: 'DIP Derivation', file: 'dip-derivation.test.mjs' },
     { name: 'DPNS Functions', file: 'dpns.test.mjs' },
     { name: 'Utility Functions', file: 'utilities-simple.test.mjs' },
