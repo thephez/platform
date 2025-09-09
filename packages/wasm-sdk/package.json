@@ -5,9 +5,7 @@
   "scripts": {
     "build": "./build.sh",
     "build:release": "./build-optimized.sh",
-    "test": "mocha",
-    "test:unit": "mocha test/unit/**/*.spec.js",
-    "test:watch": "mocha --watch",
+    "test": "echo 'Tests run from web interface at index.html'",
     "prepublishOnly": "echo 'Publishing handled by pkg/package.json'"
   },
   "ultra": {
