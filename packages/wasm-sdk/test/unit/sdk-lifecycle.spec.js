@@ -115,6 +115,66 @@ describe('SDK Lifecycle Management', function() {
 
             sdk.free();
         });
+
+        it('should accept specific version configuration', async function() {
+            const wasmSdk = testContext.getWasmSdk();
+            const builder = wasmSdk.WasmSdkBuilder.new_testnet();
+
+            // The builder methods consume the builder, so chain them
+            const configuredBuilder = builder.with_version(1);
+            const sdk = await configuredBuilder.build();
+
+            testContext.expectValidSDK(sdk);
+            sdk.free();
+        });
+
+        it.skip('should accept custom settings configuration', async function() {
+            // NOTE: This test is skipped because:
+            // 1. JavaScript doesn't validate parameter counts/types
+            // 2. No getter methods exist to verify settings were applied
+            // 3. Tests pass regardless of input, making validation impossible
+            // 4. Unclear if the configuration actually works
+
+            const wasmSdk = testContext.getWasmSdk();
+            const builder = wasmSdk.WasmSdkBuilder.new_testnet();
+
+            // Test with custom settings
+            const settings = {
+                request_timeout_seconds: 10,
+                connect_timeout_seconds: 5,
+                retries: 3
+            };
+
+            const configuredBuilder = builder.with_settings(JSON.stringify(settings));
+            const sdk = await configuredBuilder.build();
+
+            testContext.expectValidSDK(sdk);
+            sdk.free();
+        });
+
+
+        it.skip('should handle invalid settings gracefully', async function() {
+            // NOTE: This test is skipped because:
+            // 1. JavaScript is too permissive - doesn't throw on invalid input
+            // 2. No way to verify error handling actually works
+            // 3. Tests pass regardless of input validity
+
+            const wasmSdk = testContext.getWasmSdk();
+
+            // Test with null/undefined values (which should be accepted as optional params)
+            const builder1 = wasmSdk.WasmSdkBuilder.new_testnet();
+            const configuredBuilder1 = builder1.with_settings(null, null, null, null);
+            const sdk1 = await configuredBuilder1.build();
+            testContext.expectValidSDK(sdk1);
+            sdk1.free();
+
+            // Test with mixed valid and null values
+            const builder2 = wasmSdk.WasmSdkBuilder.new_testnet();
+            const configuredBuilder2 = builder2.with_settings(5000, null, 2, true);
+            const sdk2 = await configuredBuilder2.build();
+            testContext.expectValidSDK(sdk2);
+            sdk2.free();
+        });
     });
 
     describe('SDK Instance Lifecycle', function() {
@@ -380,16 +440,12 @@ describe('SDK Lifecycle Management', function() {
             // Voting/Contested resources queries
             expect(typeof wasmSdk.get_contested_resources).to.equal('function');
             expect(typeof wasmSdk.get_contested_resources_with_proof_info).to.equal('function');
-
             expect(typeof wasmSdk.get_contested_resource_vote_state).to.equal('function');
             expect(typeof wasmSdk.get_contested_resource_vote_state_with_proof_info).to.equal('function');
-
             expect(typeof wasmSdk.get_contested_resource_voters_for_identity).to.equal('function');
             expect(typeof wasmSdk.get_contested_resource_voters_for_identity_with_proof_info).to.equal('function');
-
             expect(typeof wasmSdk.get_contested_resource_identity_votes).to.equal('function');
             expect(typeof wasmSdk.get_contested_resource_identity_votes_with_proof_info).to.equal('function');
-
             expect(typeof wasmSdk.get_vote_polls_by_end_date).to.equal('function');
             expect(typeof wasmSdk.get_vote_polls_by_end_date_with_proof_info).to.equal('function');
         });
@@ -496,6 +552,8 @@ describe('SDK Lifecycle Management', function() {
             // Key derivation functions
             expect(typeof wasmSdk.derive_key_from_seed_with_path).to.equal('function');
             expect(typeof wasmSdk.generate_key_pair).to.equal('function');
+            expect(typeof wasmSdk.generate_key_pairs).to.equal('function');
+            expect(typeof wasmSdk.key_pair_from_hex).to.equal('function');
             expect(typeof wasmSdk.key_pair_from_wif).to.equal('function');
 
             // Address functions
