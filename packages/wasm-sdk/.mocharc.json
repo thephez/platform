@@ -1,0 +1,10 @@
+{
+  "spec": "test/unit/**/*.spec.js",
+  "require": ["test/unit/test-helper.js"],
+  "timeout": 5000,
+  "reporter": "spec",
+  "colors": true,
+  "bail": false,
+  "recursive": true,
+  "exit": true
+}
