@@ -7,7 +7,9 @@ const DYNAMIC_ARRAY_PARAMETERS = {
   'identityIds': true,
   'identitiesIds': true,
   'tokenIds': true,
-  'indexValues': true
+  'indexValues': true,
+  'dataContractIds': true,
+  'memberIds': true
 };
 
 /**

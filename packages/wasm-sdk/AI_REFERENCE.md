@@ -633,6 +633,32 @@ Example:
 const result = await sdk.getGroupActions("contractId", 100, "status");
 ```
 
+**Get Group Members** - `getGroupMembers`
+*Get members of a specific group with optional filtering and pagination*
+
+Parameters:
+- `contractId` (text, required) - Contract ID
+- `groupContractPosition` (number, required) - Group Contract Position
+- `memberIds` (array, optional) - Member IDs (optional)
+- `startAt` (text, optional) - Start After Member ID
+- `limit` (number, optional) - Limit
+
+Example:
+```javascript
+const result = await sdk.getGroupMembers("contractId", 100);
+```
+
+**Get Groups Data Contracts** - `getGroupsDataContracts`
+*Get groups from multiple data contracts*
+
+Parameters:
+- `dataContractIds` (array, required) - Data Contract IDs
+
+Example:
+```javascript
+const result = await sdk.getGroupsDataContracts([]);
+```
+
 **Get Group Action Signers** - `getGroupActionSigners`
 *Get signers for a group action*
 

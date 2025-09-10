@@ -402,6 +402,10 @@
       get_group_info_with_proof_info,
       get_group_infos,
       get_group_infos_with_proof_info,
+      get_group_members,
+      get_group_members_with_proof_info,
+      get_groups_data_contracts,
+      get_groups_data_contracts_with_proof_info,
       get_group_actions,
       get_group_actions_with_proof_info,
       get_group_action_signers,
@@ -2973,6 +2977,40 @@ ${indentStr}]`;
               values.status,
               startAtInfo,
               values.count
+            );
+          }
+          // Result is already a JS object from serde_wasm_bindgen
+        } else if (queryType === 'getGroupMembers') {
+          if (useProofs) {
+            result = await get_group_members_with_proof_info(
+              sdk,
+              values.contractId,
+              values.groupContractPosition,
+              values.memberIds,
+              values.startAt,
+              values.limit
+            );
+          } else {
+            result = await get_group_members(
+              sdk,
+              values.contractId,
+              values.groupContractPosition,
+              values.memberIds,
+              values.startAt,
+              values.limit
+            );
+          }
+          // Result is already a JS object from serde_wasm_bindgen
+        } else if (queryType === 'getGroupsDataContracts') {
+          if (useProofs) {
+            result = await get_groups_data_contracts_with_proof_info(
+              sdk,
+              values.dataContractIds
+            );
+          } else {
+            result = await get_groups_data_contracts(
+              sdk,
+              values.dataContractIds
             );
           }
           // Result is already a JS object from serde_wasm_bindgen

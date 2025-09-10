@@ -57,6 +57,7 @@ def generate_example_code(query_key, inputs):
         'identityIds': f"['{test_data['identity_id']}']",
         'contractId': f"'{test_data['group_contract_id']}'" if ('group' in query_key.lower() or 'Group' in query_key) else f"'{test_data['token_contract_id']}'" if ('token' in query_key.lower() or 'Token' in query_key) and 'TokenBalance' not in query_key and 'TokenInfo' not in query_key else f"'{test_data['contract_id']}'",
         'dataContractId': "'EETVvWgohFDKtbB3ejEzBcDRMNYkc9TtgXY6y8hzP3Ta'" if 'getTokenContractInfo' in query_key else f"'{test_data['data_contract_id']}'",
+        'dataContractIds': f"['{test_data['group_contract_id']}']",
         'publicKeyHash': f"'{test_data['public_key_hash_unique']}'" if 'ByPublicKeyHash' in query_key and 'NonUnique' not in query_key else f"'{test_data['public_key_hash_non_unique']}'",
         'startProTxHash': f"'{test_data['pro_tx_hash']}'",
         'tokenId': "'HEv1AYWQfwCffXQgmuzmzyzUo9untRTmVr67n4e4PSWa'" if 'getTokenPerpetualDistributionLastClaim' in query_key else f"'{test_data['token_id']}'",
@@ -114,6 +115,9 @@ def generate_example_code(query_key, inputs):
     elif query_key == 'getGroupActions':
         # getGroupActions expects: sdk, contractId, groupContractPosition, status, startAtInfo (object or null), count
         params = [f"'{test_data['group_contract_id']}'", "0", "'ACTIVE'", "null", "100"]
+    elif query_key == 'getGroupMembers':
+        # getGroupMembers expects: sdk, contractId, groupContractPosition, memberIds (optional), startAt (optional), limit
+        params = [f"'{test_data['group_contract_id']}'", "0", "null", "null", "100"]
     elif query_key == 'getDataContractHistory':
         # getDataContractHistory expects: sdk, id, limit, offset, startAtMs
         # Use the specific contract ID for getDataContractHistory examples
@@ -191,6 +195,8 @@ def generate_example_code(query_key, inputs):
         'getGroupInfos': 'get_group_infos',
         'getGroupActions': 'get_group_actions',
         'getGroupActionSigners': 'get_group_action_signers',
+        'getGroupMembers': 'get_group_members',
+        'getGroupsDataContracts': 'get_groups_data_contracts',
         'getStatus': 'get_status',
         'getCurrentQuorumsInfo': 'get_current_quorums_info',
         'getPrefundedSpecializedBalance': 'get_prefunded_specialized_balance',
@@ -925,6 +931,8 @@ def generate_user_docs_html(query_defs, transition_defs):
             get_group_infos,
             get_group_actions,
             get_group_action_signers,
+            get_group_members,
+            get_groups_data_contracts,
             get_status,
             get_current_quorums_info,
             get_prefunded_specialized_balance,
@@ -982,6 +990,8 @@ def generate_user_docs_html(query_defs, transition_defs):
             get_group_infos,
             get_group_actions,
             get_group_action_signers,
+            get_group_members,
+            get_groups_data_contracts,
             get_status,
             get_current_quorums_info,
             get_prefunded_specialized_balance,

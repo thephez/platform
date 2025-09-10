@@ -978,6 +978,40 @@ test.describe('WASM SDK Query Execution Tests', () => {
           expect(actionSigners).toBeDefined();
           expect(typeof actionSigners === 'object').toBe(true);
         }
+      },
+      { 
+        name: 'getGroupMembers', 
+        hasProofSupport: true, 
+        needsParameters: true,
+        validateFn: (result) => {
+          expect(() => JSON.parse(result)).not.toThrow();
+          const membersData = JSON.parse(result);
+          expect(membersData).toBeDefined();
+          if (Array.isArray(membersData)) {
+            membersData.forEach(member => {
+              expect(member).toHaveProperty('memberId');
+              expect(member).toHaveProperty('power');
+              expect(typeof member.power).toBe('number');
+            });
+          }
+        }
+      },
+      { 
+        name: 'getGroupsDataContracts', 
+        hasProofSupport: true, 
+        needsParameters: true,
+        validateFn: (result) => {
+          expect(() => JSON.parse(result)).not.toThrow();
+          const contractsData = JSON.parse(result);
+          expect(contractsData).toBeDefined();
+          if (Array.isArray(contractsData)) {
+            contractsData.forEach(contract => {
+              expect(contract).toHaveProperty('dataContractId');
+              expect(contract).toHaveProperty('groups');
+              expect(Array.isArray(contract.groups)).toBe(true);
+            });
+          }
+        }
       }
     ];
 

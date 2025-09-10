@@ -491,6 +491,21 @@ const testData = {
             actionId: "6XJzL6Qb8Zhwxt4HFwh8NAn7q1u4dwdoUf8EmgzDudFZ"
           }
         ]
+      },
+      getGroupMembers: {
+        testnet: [
+          {
+            contractId: "49PJEnNx7ReCitzkLdkDNr4s6RScGsnNexcdSZJ1ph5N",
+            groupContractPosition: 0,
+          }
+        ]
+      },
+      getGroupsDataContracts: {
+        testnet: [
+          {
+            dataContractIds: ["49PJEnNx7ReCitzkLdkDNr4s6RScGsnNexcdSZJ1ph5N"]
+          }
+        ]
       }
     }
   },

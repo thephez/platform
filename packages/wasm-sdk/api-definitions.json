@@ -1057,6 +1057,54 @@
             }
           ]
         },
+        "getGroupMembers": {
+          "label": "Get Group Members",
+          "description": "Get members of a specific group with optional filtering and pagination",
+          "inputs": [
+            {
+              "name": "contractId",
+              "type": "text",
+              "label": "Contract ID",
+              "required": true
+            },
+            {
+              "name": "groupContractPosition",
+              "type": "number",
+              "label": "Group Contract Position",
+              "required": true
+            },
+            {
+              "name": "memberIds",
+              "type": "array",
+              "label": "Member IDs (optional)",
+              "required": false
+            },
+            {
+              "name": "startAt",
+              "type": "text",
+              "label": "Start After Member ID",
+              "required": false
+            },
+            {
+              "name": "limit",
+              "type": "number",
+              "label": "Limit",
+              "required": false
+            }
+          ]
+        },
+        "getGroupsDataContracts": {
+          "label": "Get Groups Data Contracts",
+          "description": "Get groups from multiple data contracts",
+          "inputs": [
+            {
+              "name": "dataContractIds",
+              "type": "array",
+              "label": "Data Contract IDs",
+              "required": true
+            }
+          ]
+        },
         "getGroupActionSigners": {
           "label": "Get Group Action Signers",
           "description": "Get signers for a group action",

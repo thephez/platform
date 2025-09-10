@@ -53,6 +53,8 @@
             get_group_infos,
             get_group_actions,
             get_group_action_signers,
+            get_group_members,
+            get_groups_data_contracts,
             get_status,
             get_current_quorums_info,
             get_prefunded_specialized_balance,
@@ -110,6 +112,8 @@
             get_group_infos,
             get_group_actions,
             get_group_action_signers,
+            get_group_members,
+            get_groups_data_contracts,
             get_status,
             get_current_quorums_info,
             get_prefunded_specialized_balance,
@@ -426,6 +430,8 @@
             <li style="margin-left: 20px;"><a href="#query-getGroupInfo">Get Group Info</a></li>
             <li style="margin-left: 20px;"><a href="#query-getGroupInfos">Get Group Infos</a></li>
             <li style="margin-left: 20px;"><a href="#query-getGroupActions">Get Group Actions</a></li>
+            <li style="margin-left: 20px;"><a href="#query-getGroupMembers">Get Group Members</a></li>
+            <li style="margin-left: 20px;"><a href="#query-getGroupsDataContracts">Get Groups Data Contracts</a></li>
             <li style="margin-left: 20px;"><a href="#query-getGroupActionSigners">Get Group Action Signers</a></li>
             <li class="category">System & Utility</li>
             <li style="margin-left: 20px;"><a href="#query-getStatus">Get Status</a></li>
@@ -1754,6 +1760,65 @@
                 <div class="example-code" id="code-getGroupActions">return await window.wasmFunctions.get_group_actions(sdk, '49PJEnNx7ReCitzkLdkDNr4s6RScGsnNexcdSZJ1ph5N', 0, 'ACTIVE', null, 100);</div>
                 <button class="run-button" id="run-getGroupActions" onclick="runExample('getGroupActions')">Run</button>
                 <div class="example-result" id="result-getGroupActions"></div>            </div>
+        </div>
+        <div class="operation">
+            <h4 id="query-getGroupMembers">Get Group Members</h4>
+            <p class="description">Get members of a specific group with optional filtering and pagination</p>
+            
+            <div class="parameters">
+                <h5>Parameters:</h5>
+                <div class="parameter">
+                    <span class="param-name">Contract ID</span>
+                    <span class="param-type">text</span>
+                    <span class="param-required">(required)</span>
+                </div>
+                <div class="parameter">
+                    <span class="param-name">Group Contract Position</span>
+                    <span class="param-type">number</span>
+                    <span class="param-required">(required)</span>
+                </div>
+                <div class="parameter">
+                    <span class="param-name">Member IDs (optional)</span>
+                    <span class="param-type">array</span>
+                    <span class="param-optional">(optional)</span>
+                </div>
+                <div class="parameter">
+                    <span class="param-name">Start After Member ID</span>
+                    <span class="param-type">text</span>
+                    <span class="param-optional">(optional)</span>
+                </div>
+                <div class="parameter">
+                    <span class="param-name">Limit</span>
+                    <span class="param-type">number</span>
+                    <span class="param-optional">(optional)</span>
+                    <br><small>Default: 100 (maximum items returned if not specified)</small>
+                </div>
+            </div>
+            
+            <div class="example-container">
+                <h5>Example</h5>
+                <div class="example-code" id="code-getGroupMembers">return await window.wasmFunctions.get_group_members(sdk, '49PJEnNx7ReCitzkLdkDNr4s6RScGsnNexcdSZJ1ph5N', 0, null, null, 100);</div>
+                <button class="run-button" id="run-getGroupMembers" onclick="runExample('getGroupMembers')">Run</button>
+                <div class="example-result" id="result-getGroupMembers"></div>            </div>
+        </div>
+        <div class="operation">
+            <h4 id="query-getGroupsDataContracts">Get Groups Data Contracts</h4>
+            <p class="description">Get groups from multiple data contracts</p>
+            
+            <div class="parameters">
+                <h5>Parameters:</h5>
+                <div class="parameter">
+                    <span class="param-name">Data Contract IDs</span>
+                    <span class="param-type">array</span>
+                    <span class="param-required">(required)</span>
+                </div>
+            </div>
+            
+            <div class="example-container">
+                <h5>Example</h5>
+                <div class="example-code" id="code-getGroupsDataContracts">return await window.wasmFunctions.get_groups_data_contracts(sdk, ['49PJEnNx7ReCitzkLdkDNr4s6RScGsnNexcdSZJ1ph5N']);</div>
+                <button class="run-button" id="run-getGroupsDataContracts" onclick="runExample('getGroupsDataContracts')">Run</button>
+                <div class="example-result" id="result-getGroupsDataContracts"></div>            </div>
         </div>
         <div class="operation">
             <h4 id="query-getGroupActionSigners">Get Group Action Signers</h4>
